@@ -3,7 +3,7 @@
     <button class="btn" title="New Document" @click="onCreateTab()">
       <i class="fas fa-folder-plus icon icon_big"></i>
     </button>
-    <button class="btn btn_left-mrg" title="Save Document">
+    <button class="btn btn_left-mrg" title="Save Document" @click="onSaveTab()">
       <i class="fa fa-save icon icon_big"></i>
     </button>
   </div>
@@ -20,6 +20,9 @@
   class Toolbar extends Vue {
     public onCreateTab() {
       this.$emit('createTab');
+    }
+    public onSaveTab() {
+      this.$emit('saveTab');
     }
   }
 

@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <Toolbar @createTab="onCreateTab()"/>
+    <Toolbar @createTab="onCreateTab()"
+             @saveTab="onSaveTab()"
+    />
     <Tab-bar v-model="tabs" />
     <Workspace :tabs="tabs" />
   </div>
@@ -29,6 +31,9 @@
     // public methods
     public onCreateTab() {
       this.addTab();
+    }
+    public onSaveTab() {
+      console.log('save');
     }
 
     // private methods

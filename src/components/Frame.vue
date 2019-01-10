@@ -14,21 +14,24 @@
   class FrameComponent extends Vue {
     @Prop({ required: true })
     public tab!: Tab;
-
+    // todo add watcher tab.active for blocking pint on the canvas
     public canvas: (HTMLCanvasElement|null) = null;
     private drawer: (Drawer|null) = null;
 
     // Hooks
     public mounted() {
       this.canvas = this.$refs.canvas as HTMLCanvasElement;
-      this.drawer = new Drawer(this.canvas);
+      if (this.canvas.parentElement) {
+        this.canvas.width = this.canvas.parentElement.clientWidth;
+        this.canvas.height = this.canvas.parentElement.clientHeight;
+        this.drawer = new Drawer(this.canvas);
+      }
     }
     public destroyed() {
       if (this.drawer) {
         this.drawer.destroy();
       }
     }
-    // todo создаем экземпляр класса рисования на канвасе передаем в него элемент канваса. используем хури для дестроя
   }
 
   export default FrameComponent;
